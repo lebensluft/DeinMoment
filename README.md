@@ -74,7 +74,7 @@ h1{
   margin:6px 0 0;
 }
 .card{
-  background:rgba(255,255,255,.86);
+  background:rgba(255,255,255,.88);
   border:1px solid var(--line);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
@@ -148,7 +148,7 @@ summary::-webkit-details-marker{display:none;}
   padding:12px 16px 16px;
   border-top:1px solid var(--line);
 }
-.help,.inline-note,.result-reason,.science-copy,.office-note,.cta-copy,.legal,.cta-label,.fact-copy{
+.help,.inline-note,.result-reason,.science-copy,.office-note,.cta-copy,.legal,.cta-label{
   color:var(--muted);
 }
 .help{margin:0 0 12px;}
@@ -280,7 +280,7 @@ button:hover, .link-btn:hover{
 }
 .info-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:1fr;
   gap:12px;
   margin-top:14px;
 }
@@ -294,18 +294,6 @@ button:hover, .link-btn:hover{
   margin:0 0 8px;
   font-size:.95rem;
   color:var(--forest-900);
-}
-.fact-pill{
-  display:inline-block;
-  font-size:.78rem;
-  font-weight:700;
-  letter-spacing:.05em;
-  text-transform:uppercase;
-  padding:5px 9px;
-  border-radius:999px;
-  background:var(--sage-200);
-  color:var(--forest-900);
-  margin-bottom:8px;
 }
 .cta-block{
   margin-top:18px;
@@ -496,17 +484,13 @@ button:hover, .link-btn:hover{
 
         <div class="info-grid">
           <div class="info-box">
-            <h4>Warum das wirkt</h4>
+            <h4>Warum das wirken kann</h4>
             <div class="science-copy" id="scienceText"></div>
-          </div>
-          <div class="info-box">
-            <div class="fact-pill">Breathwork-Fact des Tages</div>
-            <div class="fact-copy" id="factText"></div>
           </div>
         </div>
 
         <div class="cta-block">
-          <p class="cta-copy">Lebensluft bietet Breathwork und Atemtraining in Frankfurt und Umgebung für Stressregulation, emotionale Gesundheit sowie Formate für Einzelpersonen, Gruppen und Unternehmen an. [web:2][web:3]</p>
+          <p class="cta-copy">Lebensluft begleitet Menschen mit Breathwork und Atemtraining dabei, im Alltag wieder mehr Ruhe, Fokus und Selbstverbindung zu finden – in Einzelsessions, Gruppenformaten und Workshops für Unternehmen. [web:2][web:3][web:97]</p>
 
           <div class="cta-group">
             <div class="cta-card">
@@ -517,16 +501,16 @@ button:hover, .link-btn:hover{
             </div>
 
             <div class="cta-card">
-              <div class="cta-label">Terminbuchung Privat</div>
+              <div class="cta-label">Privat</div>
               <a class="link-btn booking" href="https://calendly.com/lebensluft-breathwork/unverbindliches-erstgesprach-buchen" target="_blank" rel="noopener noreferrer">
-                Für Privatpersonen: Unverbindliches Erstgespräch buchen
+                Erstgespräch vereinbaren
               </a>
             </div>
 
             <div class="cta-card">
-              <div class="cta-label">Terminbuchung Unternehmen</div>
+              <div class="cta-label">Unternehmen</div>
               <a class="link-btn booking" href="https://calendly.com/lebensluft-breathwork/unverbindliches-erstgesprach-unternehmen" target="_blank" rel="noopener noreferrer">
-                Für Unternehmen: Unverbindliches Erstgespräch buchen
+                Erstgespräch vereinbaren
               </a>
             </div>
           </div>
@@ -536,8 +520,6 @@ button:hover, .link-btn:hover{
 
     <div class="legal">
       <a href="https://www.lebensluft.net/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
-      ·
-      <a href="https://www.lebensluft.net/datenschutzerklaerung" target="_blank" rel="noopener noreferrer">Datenschutz</a>
     </div>
   </section>
 </div>
@@ -551,28 +533,18 @@ const patternText=document.getElementById("patternText");
 const scriptText=document.getElementById("scriptText");
 const phaseText=document.getElementById("phaseText");
 const scienceText=document.getElementById("scienceText");
-const factText=document.getElementById("factText");
 const officeNote=document.getElementById("officeNote");
 const breathGlow=document.getElementById("breathGlow");
 const breathPerson=document.getElementById("breathPerson");
 const findBtn=document.getElementById("findBtn");
 
-let currentPair=[];
 let breathTimeouts=[];
 
-const facts=[
-  "Du atmest pro Tag ungefähr 20.000 Mal – meist, ohne es zu merken.",
-  "Die Nase filtert, erwärmt und befeuchtet die Luft, bevor sie in die Lunge gelangt.",
-  "Eine längere Ausatmung ist oft ein einfacher Weg, dem Nervensystem Sicherheit zu signalisieren.",
-  "Langsamer atmen bedeutet nicht automatisch tiefer oder stärker atmen – oft ist sanfter besser.",
-  "Das Zwerchfell ist dein wichtigster Atemmuskel und arbeitet bei jedem Atemzug mit."
-];
-
 const scienceMap={
-  slowExhale:"Eine längere, ruhige Ausatmung kann die parasympathische Regulation unterstützen. Langsame Atmung wird in der Forschung mit besserer autonomer Regulation, vagal vermittelter HRV und einem ruhigeren Atemmuster verbunden.",
+  slowExhale:"Eine längere, ruhige Ausatmung kann die parasympathische Regulation unterstützen. Langsame Atmung wird in der Forschung mit besserer autonomer Regulation und einem ruhigeren Atemmuster verbunden.",
   coherent:"Gleichmäßige langsame Atmung kann Herz, Kreislauf und Atmung zeitlich stärker koppeln. Das wird mit stabilerer Regulation und ruhiger Wachheit verbunden.",
-  physioSigh:"Der physiologische Seufzer wird genutzt, um akute Anspannung rasch zu entladen. Er eignet sich eher als kurzer Reset als als lange Übung.",
-  observe:"Interozeptive Aufmerksamkeit kann helfen, aus mentaler Übersteuerung herauszukommen, ohne den Atem sofort aktiv manipulieren zu müssen.",
+  physioSigh:"Der physiologische Seufzer kann helfen, eine akute Stressspitze kurz zu entladen. Er eignet sich eher als kurzer Reset als als lange Übung.",
+  observe:"Interozeptive Aufmerksamkeit kann helfen, aus mentaler Übersteuerung herauszukommen, ohne den Atem sofort aktiv zu kontrollieren.",
   movement:"Kleine rhythmische Bewegung plus Atemfokus kann die Aufmerksamkeit binden und Spannungsenergie besser ableiten."
 };
 
@@ -580,14 +552,12 @@ const techniques={
   stress:[
     {name:"Verlängerte Ausatmung",style:"calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Diese Übung passt gut, wenn du dein System beruhigen und Spannung abbauen möchtest.",reason:"Für Stress ist eine sanft verlängerte Ausatmung oft der einfachste Zugang zu mehr Ruhe, ohne den Atem zu forcieren.",script:"Atme leise durch die Nase ein und noch etwas länger aus. Lass Kiefer und Schultern weich werden."},
     {name:"5–7 Atmung",style:"deep-calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Diese Variante bringt noch etwas mehr Ruhe in deinen Atemrhythmus.",reason:"Gut, wenn du etwas mehr Zeit hast und eine klar spürbare Beruhigung suchst.",script:"Atme ruhig durch die Nase ein und weich länger aus. Der Atem soll fließen, nicht gedrückt werden."},
-    {name:"Physiologischer Seufzer",style:"sigh",category:"calm",subtle:false,officeSafe:false,science:"physioSigh",text:"Diese Übung kann bei akutem Druck kurzfristig entlasten.",reason:"Hilfreich bei plötzlich hoher Anspannung, aber eher für private Momente als fürs Büro.",script:"Einmal einatmen, einen kleinen zweiten Einatemzug ergänzen und dann langsam ausatmen. Nur wenige Wiederholungen."},
-    {name:"Summende Ausatmung",style:"hum",category:"calm",subtle:false,officeSafe:false,science:"slowExhale",text:"Diese Übung verbindet eine längere Ausatmung mit einem sanften Summen.",reason:"Das Summen verlängert oft automatisch die Ausatmung, ist aber nicht unauffällig.",script:"Atme durch die Nase ein und summe weich auf der Ausatmung aus."}
+    {name:"Physiologischer Seufzer",style:"sigh",category:"calm",subtle:false,officeSafe:false,science:"physioSigh",text:"Diese Übung kann bei akutem Druck kurzfristig entlasten.",reason:"Hilfreich bei plötzlich hoher Anspannung, aber eher für private Momente als fürs Büro.",script:"Einmal einatmen, einen kleinen zweiten Einatemzug ergänzen und dann langsam ausatmen. Nur wenige Wiederholungen."}
   ],
   reset:[
     {name:"3 ruhige Atemzüge",style:"calm-short",category:"reset",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine kurze, schlichte Übung für einen kleinen Neustart.",reason:"Ideal zwischen Aufgaben, nach einem Gespräch oder als Mini-Pause.",script:"Nimm drei ruhige Atemzüge. Mit jeder Ausatmung darf etwas Anspannung abfließen."},
-    {name:"Shake & breathe",style:"shake",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Diese Übung kombiniert leichte Bewegung mit natürlichem Atem.",reason:"Gut, wenn du Spannung eher körperlich als nur mental spürst.",script:"Schüttle Hände, Arme und Schultern locker aus und lass den Atem natürlich mitlaufen."},
-    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Diese Übung verbindet Gehen mit einem ruhigen Atemrhythmus.",reason:"Hilfreich, wenn Sitzen sich gerade nicht regulierend anfühlt.",script:"Gehe langsam. Atme über wenige Schritte ein und über etwas mehr Schritte aus."},
     {name:"Atem beobachten",style:"observe",category:"awareness",subtle:true,officeSafe:true,science:"observe",text:"Diese Übung holt die Aufmerksamkeit zurück in den Körper.",reason:"Besonders nützlich, wenn du gerade nichts steuern, sondern erst einmal nur ankommen willst.",script:"Beobachte deinen Atem für 30 bis 60 Sekunden, ohne etwas zu verändern."},
+    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Diese Übung verbindet Gehen mit einem ruhigen Atemrhythmus.",reason:"Hilfreich, wenn Sitzen sich gerade nicht regulierend anfühlt.",script:"Gehe langsam. Atme über wenige Schritte ein und über etwas mehr Schritte aus."},
     {name:"Schulterkreis-Atmung",style:"shoulder-roll",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Eine ruhige Mobilisationsübung für Übergänge.",reason:"Gut bei Bildschirmspannung und festem Nacken.",script:"Beim Einatmen Schultern sanft nach oben und hinten kreisen, beim Ausatmen sinken lassen."}
   ],
   "meeting-start":[
@@ -668,13 +638,12 @@ function timingFor(style,cp,safety,allowPause){
   if(style==="shake"){inhale=2;exhale=2;}
   if(style==="shoulder-roll"){inhale=4;exhale=5;}
   if(style==="stand-reset"){inhale=3;exhale=4;}
-  if(style==="hum"){inhale=4;exhale=6;}
 
   if(cp==="low"){
     inhale=Math.max(2, inhale-1);
     exhale=Math.max(inhale, exhale-1);
     pause=0;
-    if(["sleep","thoughts","deep-calm","hum"].includes(style)){
+    if(["sleep","thoughts","deep-calm"].includes(style)){
       exhale=Math.max(inhale+1, exhale-1);
     }
   }
@@ -703,7 +672,6 @@ function movementLabelFor(style){
   if(style==="shoulder-roll") return {inLabel:"Schultern kreisen",outLabel:"Sinken lassen",inShort:"Kreisen",outShort:"Sinken"};
   if(style==="march") return {inLabel:"Mini-Marsch",outLabel:"Weiter fließen",inShort:"Marsch",outShort:"Fluss"};
   if(style==="stand-reset") return {inLabel:"Aufrichten",outLabel:"Loslassen",inShort:"Auf",outShort:"Los"};
-  if(style==="hum") return {inLabel:"Einatmen",outLabel:"Summen",inShort:"Ein",outShort:"Summ"};
   return {inLabel:"Einatmen",outLabel:"Ausatmen",inShort:"Ein",outShort:"Aus"};
 }
 
@@ -718,7 +686,7 @@ function personalizeTechnique(tech){
   if(subtle==="yes"){
     office=tech.officeSafe
       ? "Diese Variante ist leise und im Büro in der Regel gut unauffällig umsetzbar."
-      : "Diese Variante ist eher nicht office-tauglich, weil Bewegung, Summen, Seufzen oder hörbare Ausatmung auffallen können.";
+      : "Diese Variante ist eher nicht office-tauglich, weil Bewegung oder hörbare Atemmuster auffallen können.";
   }
 
   if(tech.style==="observe"){
@@ -762,7 +730,6 @@ function personalizeTechnique(tech){
   if(tech.style==="walking") pattern=`${t.inhale} Schritte ein · ${t.exhale} Schritte aus`;
   if(tech.style==="finger") pattern=`Hoch beim Einatmen · runter beim Ausatmen`;
   if(tech.style==="shake") pattern=`Lockere Bewegung · natürlicher Atem`;
-  if(tech.style==="hum") pattern=`${t.inhale} Sek. ein · summend ${t.exhale} Sek. aus`;
   if(t.pause>0) pattern+=` · ${t.pause} Sek. Pause`;
 
   let extra="";
@@ -813,7 +780,7 @@ function filterForPreferences(list){
   }
 
   if(filtered.length===0){
-    filtered=[techniques.reset[0],techniques.reset[3]];
+    filtered=[techniques.reset[0], techniques.reset[1]];
   }
 
   return filtered;
@@ -821,14 +788,14 @@ function filterForPreferences(list){
 
 function sortByGoalLogic(goal,list){
   const priorities={
-    stress:["calm","deep-calm","hum","calm-short","observe","sigh"],
+    stress:["calm","deep-calm","calm-short","observe","sigh"],
     sleep:["sleep-soft","sleep","observe"],
     focus:["coherent","balance","finger","reach-soft"],
     "meeting-start":["meeting-calm","coherent","finger"],
     energy:["energy","balance","reach","power","march"],
     overload:["observe","finger","calm-short","walking","shake"],
     thoughts:["thoughts","counting","finger","walking"],
-    reset:["calm-short","observe","walking","shoulder-roll","shake"],
+    reset:["calm-short","observe","walking","shoulder-roll"],
     call:["calm-short","observe","walking"],
     "meeting-end":["calm","calm-short","stand-reset"],
     presentation:["coherent","calm","sigh"]
@@ -841,12 +808,12 @@ function sortByGoalLogic(goal,list){
   });
 }
 
-function pickTechniques(){
+function pickTechnique(){
   const goal=getValue("goal");
   let list=[...(techniques[goal]||techniques.stress)];
   list=filterForPreferences(list);
   list=sortByGoalLogic(goal,list);
-  return list.map(personalizeTechnique);
+  return personalizeTechnique(list[0]);
 }
 
 function renderTechnique(tech){
@@ -856,10 +823,9 @@ function renderTechnique(tech){
   patternText.textContent=tech.pattern;
   scriptText.textContent=tech.script;
   scienceText.textContent=tech.science;
-  factText.textContent=facts[Math.floor(Math.random()*facts.length)];
   officeNote.textContent=tech.office || "";
   resultEl.classList.add("show");
-  startBreathingAnimation(tech.sequence, tech.style);
+  startBreathingAnimation(tech.sequence);
 }
 
 function clearBreathTimers(){
@@ -869,7 +835,7 @@ function clearBreathTimers(){
 }
 
 function poseForPhase(phaseLabel){
-  const isOut=/aus|summ|lösen|sinken|runter/i.test(phaseLabel);
+  const isOut=/aus|lösen|sinken|runter/i.test(phaseLabel);
   const isPause=/pause|ruhe|beobachten/i.test(phaseLabel);
 
   if(isPause){
@@ -922,8 +888,8 @@ function startBreathingAnimation(sequence){
 }
 
 findBtn.addEventListener("click",()=>{
-  currentPair=pickTechniques();
-  renderTechnique(currentPair[0]);
+  const technique=pickTechnique();
+  renderTechnique(technique);
   resultEl.scrollIntoView({behavior:"smooth",block:"start"});
 });
 </script>
