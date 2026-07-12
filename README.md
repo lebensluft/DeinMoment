@@ -387,7 +387,7 @@ button:hover, .link-btn:hover{
 <div class="wrap">
 
   <section class="hero">
-    <div class="eyebrow">Lebensluft · Breathwork in Frankfurt</div>
+    <div class="eyebrow">Lebensluft</div>
     <h1>Finde die Atemübung, die zu deinem Moment passt</h1>
     <p class="intro">Ruhig, alltagstauglich und an deinen Zustand angepasst – für Stress, Fokus, Meetings, Übergänge, Schlaf oder neue Energie.</p>
     <p class="disclaimer">Hinweis: Dieses Tool ersetzt keine medizinische Beratung. Bei Brustschmerz, Atemnot, Schwindel oder starkem Unwohlsein bitte nur sanft atmen und keine Atempausen machen.</p>
