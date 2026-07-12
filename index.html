@@ -43,16 +43,6 @@ body{
   padding:8px 0 14px;
   border-bottom:3px solid var(--forest-700);
 }
-.logo-section {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-.logo-section img {
-  max-width: 100px;
-  height: auto;
-}
 .eyebrow{
   color:var(--forest-700);
   font-size:.88rem;
@@ -397,13 +387,8 @@ button:hover, .link-btn:hover{
 <div class="wrap">
 
   <section class="hero">
-    <div class="logo-section">
-      <img src="assets/Lebensluft-logo.png.png" alt="Lebensluft Logo">
-      <div>
-        <div class="eyebrow">Lebensluft · Breathwork in Frankfurt</div>
-        <h1>Finde die Atemübung, die zu deinem Moment passt</h1>
-      </div>
-    </div>
+    <div class="eyebrow">Lebensluft · Breathwork in Frankfurt</div>
+    <h1>Finde die Atemübung, die zu deinem Moment passt</h1>
     <p class="intro">Ruhig, alltagstauglich und an deinen Zustand angepasst – für Stress, Fokus, Meetings, Übergänge, Schlaf oder neue Energie.</p>
     <p class="disclaimer">Hinweis: Dieses Tool ersetzt keine medizinische Beratung. Bei Brustschmerz, Atemnot, Schwindel oder starkem Unwohlsein bitte nur sanft atmen und keine Atempausen machen.</p>
   </section>
@@ -490,7 +475,7 @@ button:hover, .link-btn:hover{
               </div>
             </div>
           </div>
-          <div class="phase" id="phaseText">Gleich geht's los</div>
+          <div class="phase" id="phaseText">Gleich geht’s los</div>
           <div class="pattern" id="patternText">4 Sek. ein · 6 Sek. aus</div>
           <div class="office-note" id="officeNote"></div>
         </div>
@@ -505,7 +490,7 @@ button:hover, .link-btn:hover{
         </div>
 
         <div class="cta-block">
-          <p class="cta-copy">Lebensluft begleitet Menschen mit Breathwork und Atemtraining dabei, im Alltag wieder mehr Ruhe, Fokus und Selbstverbindung zu finden – in Einzelsessions, Gruppenformaten oder in deinem Unternehmen.</p>
+          <p class="cta-copy">Lebensluft begleitet Menschen mit Breathwork und Atemtraining dabei, im Alltag wieder mehr Ruhe, Fokus und Selbstverbindung zu finden – in Einzelsessions, Gruppenformaten und Workshops für Unternehmen. [web:2][web:3][web:97]</p>
 
           <div class="cta-group">
             <div class="cta-card">
@@ -556,7 +541,7 @@ const findBtn=document.getElementById("findBtn");
 let breathTimeouts=[];
 
 const scienceMap={
-  slowExhale:"Eine längere, ruhige Ausatmung kann die parasympathische Regulation unterstützen. Langsame Atmung wird in der Forschung mit besserer autonomer Regulation und einem ruhigeren Atemm[...]
+  slowExhale:"Eine längere, ruhige Ausatmung kann die parasympathische Regulation unterstützen. Langsame Atmung wird in der Forschung mit besserer autonomer Regulation und einem ruhigeren Atemmuster verbunden.",
   coherent:"Gleichmäßige langsame Atmung kann Herz, Kreislauf und Atmung zeitlich stärker koppeln. Das wird mit stabilerer Regulation und ruhiger Wachheit verbunden.",
   physioSigh:"Der physiologische Seufzer kann helfen, eine akute Stressspitze kurz zu entladen. Er eignet sich eher als kurzer Reset als als lange Übung.",
   observe:"Interozeptive Aufmerksamkeit kann helfen, aus mentaler Übersteuerung herauszukommen, ohne den Atem sofort aktiv zu kontrollieren.",
@@ -565,65 +550,65 @@ const scienceMap={
 
 const techniques={
   stress:[
-    {name:"Verlängerte Ausatmung",style:"calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Diese Übung passt gut, wenn du dein System beruhigen und Spannung abbauen m[...]
-    {name:"5–7 Atmung",style:"deep-calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Diese Variante bringt noch etwas mehr Ruhe in deinen Atemrhythmus.",reason:"Gut, [...]
-    {name:"Physiologischer Seufzer",style:"sigh",category:"calm",subtle:false,officeSafe:false,science:"physioSigh",text:"Diese Übung kann bei akutem Druck kurzfristig entlasten.",reason:"Hilfre[...]
+    {name:"Verlängerte Ausatmung",style:"calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Diese Übung passt gut, wenn du dein System beruhigen und Spannung abbauen möchtest.",reason:"Für Stress ist eine sanft verlängerte Ausatmung oft der einfachste Zugang zu mehr Ruhe, ohne den Atem zu forcieren.",script:"Atme leise durch die Nase ein und noch etwas länger aus. Lass Kiefer und Schultern weich werden."},
+    {name:"5–7 Atmung",style:"deep-calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Diese Variante bringt noch etwas mehr Ruhe in deinen Atemrhythmus.",reason:"Gut, wenn du etwas mehr Zeit hast und eine klar spürbare Beruhigung suchst.",script:"Atme ruhig durch die Nase ein und weich länger aus. Der Atem soll fließen, nicht gedrückt werden."},
+    {name:"Physiologischer Seufzer",style:"sigh",category:"calm",subtle:false,officeSafe:false,science:"physioSigh",text:"Diese Übung kann bei akutem Druck kurzfristig entlasten.",reason:"Hilfreich bei plötzlich hoher Anspannung, aber eher für private Momente als fürs Büro.",script:"Einmal einatmen, einen kleinen zweiten Einatemzug ergänzen und dann langsam ausatmen. Nur wenige Wiederholungen."}
   ],
   reset:[
-    {name:"3 ruhige Atemzüge",style:"calm-short",category:"reset",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine kurze, schlichte Übung für einen kleinen Neustart.",reason:"Ideal [...]
-    {name:"Atem beobachten",style:"observe",category:"awareness",subtle:true,officeSafe:true,science:"observe",text:"Diese Übung holt die Aufmerksamkeit zurück in den Körper.",reason:"Besonder[...]
-    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Diese Übung verbindet Gehen mit einem ruhigen Atemrhythmus.",reason:"Hilfrei[...]
-    {name:"Schulterkreis-Atmung",style:"shoulder-roll",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Eine ruhige Mobilisationsübung für Übergänge.",reason:"Gut be[...]
+    {name:"3 ruhige Atemzüge",style:"calm-short",category:"reset",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine kurze, schlichte Übung für einen kleinen Neustart.",reason:"Ideal zwischen Aufgaben, nach einem Gespräch oder als Mini-Pause.",script:"Nimm drei ruhige Atemzüge. Mit jeder Ausatmung darf etwas Anspannung abfließen."},
+    {name:"Atem beobachten",style:"observe",category:"awareness",subtle:true,officeSafe:true,science:"observe",text:"Diese Übung holt die Aufmerksamkeit zurück in den Körper.",reason:"Besonders nützlich, wenn du gerade nichts steuern, sondern erst einmal nur ankommen willst.",script:"Beobachte deinen Atem für 30 bis 60 Sekunden, ohne etwas zu verändern."},
+    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Diese Übung verbindet Gehen mit einem ruhigen Atemrhythmus.",reason:"Hilfreich, wenn Sitzen sich gerade nicht regulierend anfühlt.",script:"Gehe langsam. Atme über wenige Schritte ein und über etwas mehr Schritte aus."},
+    {name:"Schulterkreis-Atmung",style:"shoulder-roll",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Eine ruhige Mobilisationsübung für Übergänge.",reason:"Gut bei Bildschirmspannung und festem Nacken.",script:"Beim Einatmen Schultern sanft nach oben und hinten kreisen, beim Ausatmen sinken lassen."}
   ],
   "meeting-start":[
-    {name:"Meeting-Ankommen",style:"meeting-calm",category:"focus",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine leise, unauffällige Atemübung vor dem Gespräch.",reason:"Vor Meet[...]
-    {name:"Kohärente Atmung",style:"coherent",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Diese Übung schafft einen stabilen Rhythmus für Präsenz und Fokus.",reason:[...]
-    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Kleine Handbewegung plus Atemfokus für mehr Sammlung.",reason:"Die feine Beweg[...]
+    {name:"Meeting-Ankommen",style:"meeting-calm",category:"focus",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine leise, unauffällige Atemübung vor dem Gespräch.",reason:"Vor Meetings funktionieren einfache, diskrete Rhythmen meist am besten.",script:"Atme ruhig ein und etwas länger aus. Die Ausatmung bleibt leise und weich."},
+    {name:"Kohärente Atmung",style:"coherent",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Diese Übung schafft einen stabilen Rhythmus für Präsenz und Fokus.",reason:"Gut, wenn du ruhig, klar und wach in ein Gespräch gehen willst.",script:"Atme gleichmäßig ein und aus. Bleibe aufrecht und entspannt."},
+    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Kleine Handbewegung plus Atemfokus für mehr Sammlung.",reason:"Die feine Bewegung gibt dem Geist einen zusätzlichen Anker.",script:"Fahre mit einem Finger die andere Hand entlang – hoch beim Einatmen, runter beim Ausatmen."}
   ],
   "meeting-end":[
-    {name:"Calm close",style:"calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine Übung, um nach einem Termin bewusst loszulassen.",reason:"Hilfreich für einen kla[...]
-    {name:"3 Ausatemzüge",style:"calm-short",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Kurz, diskret und wirksam nach intensiven Gesprächen.",reason:"Gut, wenn dire[...]
-    {name:"Steh-Auf-Reset",style:"stand-reset",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Für kurze Unterbrechungen mit mehr Körperbeteiligung.",reason:"Gut, wen[...]
+    {name:"Calm close",style:"calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine Übung, um nach einem Termin bewusst loszulassen.",reason:"Hilfreich für einen klareren Übergang in die nächste Aufgabe.",script:"Atme normal ein und etwas länger aus. Nutze drei bis fünf ruhige Atemzüge als Abschluss."},
+    {name:"3 Ausatemzüge",style:"calm-short",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Kurz, diskret und wirksam nach intensiven Gesprächen.",reason:"Gut, wenn direkt der nächste Termin folgt.",script:"Atme drei Mal ruhig ein und etwas länger aus."},
+    {name:"Steh-Auf-Reset",style:"stand-reset",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Für kurze Unterbrechungen mit mehr Körperbeteiligung.",reason:"Gut, wenn du nach dem Sitzen wieder in Bewegung kommen willst.",script:"Stell dich hin, richte dich beim Einatmen auf und lasse beim Ausatmen Spannung aus Armen und Schultern sinken."}
   ],
   focus:[
-    {name:"Kohärente Atmung",style:"coherent",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Diese Übung unterstützt ruhige Wachheit und mentale Stabilität.",reason:"F�[...]
-    {name:"Klarer Rhythmus",style:"balance",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Eine strukturierte Atemübung für mehr mentale Ordnung.",reason:"Gut, wenn du di[...]
-    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Atem plus kleine Bewegung als Aufmerksamkeitsanker.",reason:"Besonders hilfreic[...]
-    {name:"Seated Reach Flow",style:"reach-soft",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Sanfte Bewegung, um Müdigkeit aus dem Oberkörper zu lösen.",reason:"[...]
+    {name:"Kohärente Atmung",style:"coherent",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Diese Übung unterstützt ruhige Wachheit und mentale Stabilität.",reason:"Für Fokus ist ein ausgeglichener Rhythmus oft hilfreicher als sehr beruhigende oder aktivierende Muster.",script:"Atme gleichmäßig ein und aus. Ruhig, leise und ohne Druck."},
+    {name:"Klarer Rhythmus",style:"balance",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Eine strukturierte Atemübung für mehr mentale Ordnung.",reason:"Gut, wenn du dich sammeln willst, ohne müde zu werden.",script:"Atme in einem gleichmäßigen Rhythmus und lass den Atem weich bleiben."},
+    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Atem plus kleine Bewegung als Aufmerksamkeitsanker.",reason:"Besonders hilfreich bei zerstreuter Aufmerksamkeit.",script:"Beim Hochstreichen einatmen, beim Runterstreichen ausatmen."},
+    {name:"Seated Reach Flow",style:"reach-soft",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Sanfte Bewegung, um Müdigkeit aus dem Oberkörper zu lösen.",reason:"Praktisch bei Erschöpfung durch langes Sitzen.",script:"Beim Einatmen Arme sanft anheben, beim Ausatmen wieder sinken lassen."}
   ],
   energy:[
-    {name:"Reach & breathe",style:"reach",category:"energy",subtle:false,officeSafe:false,science:"movement",text:"Eine aktivierende Übung mit Armbewegung und Rhythmus.",reason:"Gut, wenn du kö[...]
-    {name:"Standing power breath",style:"power",category:"energy",subtle:false,officeSafe:false,science:"movement",text:"Öffnet den Oberkörper und bringt Wachheit ins System.",reason:"Hilfreich[...]
-    {name:"Aktivierende Nasenatmung",style:"energy",category:"energy",subtle:true,officeSafe:true,science:"coherent",text:"Eine kontrollierte, etwas präsentere Nasenatmung für neue Wachheit.",r[...]
-    {name:"Mini March Breath",style:"march",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Kleine Marschbewegung plus Atemrhythmus.",reason:"Gut als kurzer Aktivierung[...]
-    {name:"Calm energy",style:"balance",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Mehr Klarheit ohne Überstimulation.",reason:"Praktisch, wenn du Energie und Ruhe zug[...]
+    {name:"Reach & breathe",style:"reach",category:"energy",subtle:false,officeSafe:false,science:"movement",text:"Eine aktivierende Übung mit Armbewegung und Rhythmus.",reason:"Gut, wenn du körperlich etwas wacher werden möchtest.",script:"Atme ein, während du die Arme hebst. Atme aus, während du sie wieder senkst."},
+    {name:"Standing power breath",style:"power",category:"energy",subtle:false,officeSafe:false,science:"movement",text:"Öffnet den Oberkörper und bringt Wachheit ins System.",reason:"Hilfreich bei Trägheit oder einem Energietief.",script:"Atme ein und öffne den Brustkorb. Beim Ausatmen löst du die Spannung wieder."},
+    {name:"Aktivierende Nasenatmung",style:"energy",category:"energy",subtle:true,officeSafe:true,science:"coherent",text:"Eine kontrollierte, etwas präsentere Nasenatmung für neue Wachheit.",reason:"Gut, wenn du einen kurzen Energieimpuls suchst, ohne zu auffällig zu werden.",script:"Atme etwas aktiver, aber weiter ruhig durch die Nase. Bleibe aufrecht."},
+    {name:"Mini March Breath",style:"march",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Kleine Marschbewegung plus Atemrhythmus.",reason:"Gut als kurzer Aktivierungs-Reset zwischendurch.",script:"Marsch leicht auf der Stelle. Einatmen über zwei Schritte, ausatmen über zwei bis drei Schritte."},
+    {name:"Calm energy",style:"balance",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Mehr Klarheit ohne Überstimulation.",reason:"Praktisch, wenn du Energie und Ruhe zugleich brauchst.",script:"Atme gleichmäßig und etwas präsenter, aber nicht hektisch."}
   ],
   presentation:[
-    {name:"Presentation reset",style:"calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Hilft, Nervosität zu senken, ohne dich schläfrig zu machen.",reason:"Vor Auftr[...]
-    {name:"Steady presence",style:"coherent",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Ein klarer Rhythmus für Ruhe und Präsenz.",reason:"Gut vor dem Sprechen, wenn [...]
-    {name:"Physiologischer Seufzer",style:"sigh",category:"calm",subtle:false,officeSafe:false,science:"physioSigh",text:"Kann eine akute Nervositätsspitze rasch entschärfen.",reason:"Eher für[...]
+    {name:"Presentation reset",style:"calm",category:"calm",subtle:true,officeSafe:true,science:"slowExhale",text:"Hilft, Nervosität zu senken, ohne dich schläfrig zu machen.",reason:"Vor Auftritten ist ruhige Regulierung oft hilfreicher als sehr tiefe Entspannung.",script:"Atme ruhig ein und länger aus. Lass Kiefer, Bauch und Schultern weich werden."},
+    {name:"Steady presence",style:"coherent",category:"focus",subtle:true,officeSafe:true,science:"coherent",text:"Ein klarer Rhythmus für Ruhe und Präsenz.",reason:"Gut vor dem Sprechen, wenn du geerdet und wach sein willst.",script:"Atme gleichmäßig ein und aus und richte dich innerlich auf."},
+    {name:"Physiologischer Seufzer",style:"sigh",category:"calm",subtle:false,officeSafe:false,science:"physioSigh",text:"Kann eine akute Nervositätsspitze rasch entschärfen.",reason:"Eher für den Moment kurz vor dem Auftritt als für längere Praxis.",script:"Ein doppelter Einatemzug, dann eine lange weiche Ausatmung. Wenige Wiederholungen."}
   ],
   call:[
-    {name:"Call reset",style:"calm-short",category:"reset",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine kleine Zwischen-Übung, um sauber in den nächsten Call zu wechseln.",reason[...]
-    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Bewegung und Atemrhythmus für Übergänge.",reason:"Hilfreich, wenn du kurz [...]
-    {name:"Atem beobachten",style:"observe",category:"awareness",subtle:true,officeSafe:true,science:"observe",text:"Für einen stillen Reset ohne zusätzliche Steuerung.",reason:"Gut nach vielen[...]
+    {name:"Call reset",style:"calm-short",category:"reset",subtle:true,officeSafe:true,science:"slowExhale",text:"Eine kleine Zwischen-Übung, um sauber in den nächsten Call zu wechseln.",reason:"Ideal bei engem Takt zwischen Gesprächen.",script:"Atme drei bis fünf Mal ruhig ein und etwas länger aus."},
+    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Bewegung und Atemrhythmus für Übergänge.",reason:"Hilfreich, wenn du kurz aufstehen und den Kopf frei bekommen kannst.",script:"Gehe ruhig und atme über wenige Schritte ein und etwas länger aus."},
+    {name:"Atem beobachten",style:"observe",category:"awareness",subtle:true,officeSafe:true,science:"observe",text:"Für einen stillen Reset ohne zusätzliche Steuerung.",reason:"Gut nach vielen Reizen oder Informationsdichte.",script:"Beobachte den Atem für einen Moment und lass ihn von selbst kommen und gehen."}
   ],
   overload:[
-    {name:"Atem beobachten",style:"observe",category:"awareness",subtle:true,officeSafe:true,science:"observe",text:"Weniger tun, mehr wahrnehmen – gut bei mentaler Überlastung.",reason:"Wenn [...]
-    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Berührung, Rhythmus und Atem bündeln die Aufmerksamkeit.",reason:"Gut, wenn d[...]
-    {name:"3 ruhige Atemzüge",style:"calm-short",category:"reset",subtle:true,officeSafe:true,science:"slowExhale",text:"Ein kleiner Anker ohne viel Aufwand.",reason:"Gut, wenn du dich schnell w[...]
-    {name:"Shake & breathe",style:"shake",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Wenn Überlastung körperlich spürbar ist, kann Bewegung zuerst sinnvoll sein[...]
+    {name:"Atem beobachten",style:"observe",category:"awareness",subtle:true,officeSafe:true,science:"observe",text:"Weniger tun, mehr wahrnehmen – gut bei mentaler Überlastung.",reason:"Wenn ohnehin schon zu viel los ist, hilft oft eine einfache, nicht-komplexe Übung am meisten.",script:"Beobachte deinen Atem 30 bis 60 Sekunden lang."},
+    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Berührung, Rhythmus und Atem bündeln die Aufmerksamkeit.",reason:"Gut, wenn dein Kopf zu viele offene Tabs hat.",script:"Streiche langsam Finger für Finger entlang und verbinde es mit Ein- und Ausatmung."},
+    {name:"3 ruhige Atemzüge",style:"calm-short",category:"reset",subtle:true,officeSafe:true,science:"slowExhale",text:"Ein kleiner Anker ohne viel Aufwand.",reason:"Gut, wenn du dich schnell wieder sortieren willst.",script:"Drei ruhige Atemzüge, mit etwas längerer Ausatmung."},
+    {name:"Shake & breathe",style:"shake",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Wenn Überlastung körperlich spürbar ist, kann Bewegung zuerst sinnvoll sein.",reason:"Hilfreich bei innerer Unruhe, die sich im Körper staut.",script:"Locker ausschütteln, dann stehenbleiben und den Atem wieder wahrnehmen."}
   ],
   sleep:[
-    {name:"Sleep exhale",style:"sleep",category:"sleep",subtle:true,officeSafe:true,allowPause:true,science:"slowExhale",text:"Eine weiche Abendübung mit längerer Ausatmung.",reason:"Für Schla[...]
-    {name:"4-6 Abendatmung",style:"sleep-soft",category:"sleep",subtle:true,officeSafe:true,allowPause:false,science:"slowExhale",text:"Eine mildere Abendvariante ohne lange Atemhaltephasen.",rea[...]
-    {name:"Soft breath awareness",style:"observe",category:"sleep",subtle:true,officeSafe:true,science:"observe",text:"Wenn du abends nichts mehr steuern möchtest.",reason:"Entlastend, wenn akti[...]
+    {name:"Sleep exhale",style:"sleep",category:"sleep",subtle:true,officeSafe:true,allowPause:true,science:"slowExhale",text:"Eine weiche Abendübung mit längerer Ausatmung.",reason:"Für Schlaf ist ein sanfter, verlangsamter Rhythmus meist passender als zu viel Technik.",script:"Ruhig einatmen und deutlich länger ausatmen. Nur wenn es angenehm ist, darf nach der Ausatmung ein kleiner natürlicher Moment Stille entstehen."},
+    {name:"4-6 Abendatmung",style:"sleep-soft",category:"sleep",subtle:true,officeSafe:true,allowPause:false,science:"slowExhale",text:"Eine mildere Abendvariante ohne lange Atemhaltephasen.",reason:"Besser geeignet für sensible oder unruhige Tage als strengere Schlafmuster.",script:"Atme weich durch die Nase ein und länger aus. Kein Zwang, keine Leistung."},
+    {name:"Soft breath awareness",style:"observe",category:"sleep",subtle:true,officeSafe:true,science:"observe",text:"Wenn du abends nichts mehr steuern möchtest.",reason:"Entlastend, wenn aktive Atemtechnik eher Druck erzeugt.",script:"Lege eine Hand auf Brust oder Bauch und beobachte deinen Atem, ohne ihn zu verändern."}
   ],
   thoughts:[
-    {name:"Raum durch Ausatmung",style:"thoughts",category:"calm",subtle:true,officeSafe:true,allowPause:true,science:"slowExhale",text:"Hilft, Gedankendruck zu verringern und etwas mehr inneren [...]
-    {name:"Atem zählen",style:"counting",category:"focus",subtle:true,officeSafe:true,science:"observe",text:"Gibt dem Geist eine kleine, klare Aufgabe.",reason:"Hilfreich bei kreisenden Gedanke[...]
-    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Körperlicher Anker für einen überaktiven Kopf.",reason:"Die kleine Bewegung [...]
-    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Gedanken in Bewegung bringen statt nur sitzen und denken.",reason:"Hilfreich,[...]
+    {name:"Raum durch Ausatmung",style:"thoughts",category:"calm",subtle:true,officeSafe:true,allowPause:true,science:"slowExhale",text:"Hilft, Gedankendruck zu verringern und etwas mehr inneren Raum zu spüren.",reason:"Längere Ausatmung kann bei Grübeln oft einfacher wirken als komplexe Muster.",script:"Atme ruhig ein und länger aus. Stell dir vor, mit jeder Ausatmung wird es innen etwas weiter."},
+    {name:"Atem zählen",style:"counting",category:"focus",subtle:true,officeSafe:true,science:"observe",text:"Gibt dem Geist eine kleine, klare Aufgabe.",reason:"Hilfreich bei kreisenden Gedanken.",script:"Zähle die Ausatmungen von 1 bis 10 und beginne dann wieder bei 1."},
+    {name:"Finger Tracing",style:"finger",category:"grounding",subtle:true,officeSafe:true,science:"movement",text:"Körperlicher Anker für einen überaktiven Kopf.",reason:"Die kleine Bewegung hilft, Aufmerksamkeit zu bündeln.",script:"Finger für Finger hoch und runter streichen, passend zu Ein- und Ausatmung."},
+    {name:"Walking breath",style:"walking",category:"movement",subtle:false,officeSafe:false,science:"movement",text:"Gedanken in Bewegung bringen statt nur sitzen und denken.",reason:"Hilfreich, wenn Stillsein das Grübeln eher verstärkt.",script:"Gehe langsam, atme über wenige Schritte ein und etwas länger aus."}
   ]
 };
 
@@ -896,7 +881,7 @@ function startBreathingAnimation(sequence){
   breathGlow.style.transition="transform 1s linear";
   breathPerson.style.transform="scale(1)";
   breathGlow.style.transform="scale(1)";
-  phaseText.textContent="Gleich geht's los";
+  phaseText.textContent="Gleich geht’s los";
 
   const starter=setTimeout(()=>runPhase(sequence,0),250);
   breathTimeouts.push(starter);
